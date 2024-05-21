@@ -1,0 +1,364 @@
+API Documentation
+Overview
+This document provides comprehensive documentation for the APIs exposed by the CRM DASHBORD. It includes details about each API endpoint, request parameters, request bodies, response structures, and requirements.
+
+Postman Collection
+The API documentation is provided in the form of a Postman collection. You can import this collection into your Postman workspace to interact with the APIs and explore their functionality.
+
+Postman Collection
+Endpoints
+
+1. Tickets
+GET /api/tickets/
+
+Description: Retrieve all tickets.
+Response:
+
+
+[
+  {
+    "id": 1,
+    "title": "string",
+    "description": "string",
+    "status": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime",
+    "user_id": "integer"
+  },
+  {
+    "id": 2,
+    "title": "string",
+    "description": "string",
+    "status": "string",
+    "created_at": "datetime",
+    "updated_at": "datetime",
+    "user_id": "integer"
+  }
+]
+POST /api/tickets/
+
+Description: Create a new ticket.
+Request Body:
+
+{
+  "title": "string",
+  "description": "string",
+  "status": "string"
+}
+Response:
+
+
+{
+  "id": 1,
+  "title": "string",
+  "description": "string",
+  "status": "string",
+  "created_at": "datetime",
+  "updated_at": "datetime",
+  "user_id": "integer"
+}
+2. Comments
+POST /api/comments/
+Description: Add a comment to a ticket.
+Request Body:
+
+
+{
+  "ticket_id": "integer",
+  "comment": "string"
+}
+Response:
+
+
+{
+  "id": 1,
+  "ticket_id": "integer",
+  "comment": "string",
+  "user_id": "integer",
+  "created_at": "datetime"
+}
+
+
+Clone the Repository:
+
+git clone https://github.com/your-username/crm_ticketing_system.git
+Navigate to the Project Directory:
+
+cd crm_ticketing_system
+Set Up Backend:
+
+Navigate to the backend directory.
+
+cd crm_app
+Install backend dependencies.
+pip install pytest-django
+pip install django-cors-headers
+
+Start the backend server.
+npm start
+Set Up Frontend:
+
+Navigate to the frontend directory.
+
+cd crm-frontend
+Install frontend dependencies.
+npm install
+npm install react-beautiful-dnd
+npm install axios
+npm install @fortawesome/react-fontawesome @fortawesome/free-solid-svg-icons
+
+Start the frontend server.
+
+npm start
+Access the Application:
+
+Open your web browser and navigate to the URL where the frontend server is running (usually http://localhost:3000).
+You should now be able to access and use the application.
+By following these instructions, you can set up and run the Project Name application locally on your machine.
+
+
+<!----- crm_ticketing_system postman_collection json ---- -->
+
+{
+  "info": {
+    "name": "CRM Ticketing System API",
+    "_postman_id": "b8f4b2a0-c8d5-4e9a-a674-3db9246a8a4f",
+    "description": "Postman collection for CRM Ticketing System API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Get All Tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tickets"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"New Ticket\",\n  \"name\": \"John Doe\",\n  \"platform\": \"zomato\",\n  \"restaurant_branch\": \"ANDHERI\",\n  \"description\": \"Issue description\",\n  \"status\": \"open\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tickets/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tickets"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Ticket by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tickets",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Ticket",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Updated Ticket\",\n  \"name\": \"Jane Doe\",\n  \"platform\": \"swiggy\",\n  \"restaurant_branch\": \"MALAD\",\n  \"description\": \"Updated issue description\",\n  \"status\": \"on hold\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tickets",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Ticket",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/tickets/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tickets",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Add Comment to Ticket",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment\": \"This is a comment.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/tickets/:id/add_comment/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "tickets",
+                ":id",
+                "add_comment"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Comments",
+      "item": [
+        {
+          "name": "Get All Comments",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/comments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Create Comment",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticket\": 1,\n  \"comment\": \"This is a comment.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/comments/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Comment by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{base_url}}/comments/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments",
+                ":id"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Comment",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ticket\": 1,\n  \"comment\": \"This is an updated comment.\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/comments/:id/",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "comments",
+                ":id"
+              ]
+            }
+          }
+        },
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000/api"
+    }
+  ]
+}

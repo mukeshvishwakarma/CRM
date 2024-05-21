@@ -1,0 +1,110 @@
+.dashboard {
+    display: flex;
+    justify-content: space-around;
+    padding: 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .status-column {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 22%;
+    padding: 10px;
+    animation: fadeIn 0.5s ease-in-out;
+    transition: background-color 0.3s ease;
+  }
+  
+  .status-column h2 {
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-bottom: 2px solid #eee;
+    background-color: #f1f1f1;
+    border-radius: 4px 4px 0 0;
+    animation: slideInDown 0.5s ease-in-out;
+  }
+  
+  .draggable {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .draggable.is-dragging {
+    background-color: lightblue;
+  }
+  
+  
+  .ticket-card {
+    background-color: #fff;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    animation: fadeInUp 0.5s ease-in-out;
+  }
+  
+  .ticket-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes slideInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  .save-status-button {
+    margin-top: 10px;
+    margin-left: 8px;
+    padding: 6.5px 12px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s, box-shadow 0.3s;
+  }
+  
+  .save-status-button:hover {
+    background-color: #036ee2;
+    transform: scale(1.05);
+  }
+  
+  .save-status-button:active {
+    background-color: #2088f7;
+    transform: scale(0.95);
+  }

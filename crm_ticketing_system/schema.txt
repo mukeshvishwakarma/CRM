@@ -1,0 +1,23 @@
+CREATE TABLE `ticket` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `title` VARCHAR(255) NOT NULL,
+  `name` VARCHAR(255) NOT NULL DEFAULT 'Name',
+  `platform` ENUM('zomato', 'swiggy', 'google') NOT NULL DEFAULT 'zomato',
+  `restaurant_branch` ENUM('ANDHERI', 'MALAD', 'BORIVALI') NOT NULL DEFAULT 'Andheri',
+  `description` TEXT NOT NULL,
+  `status` ENUM('open', 'on hold', 'closed', 'unassigned') NOT NULL DEFAULT 'open',
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX (`status`),
+  INDEX (`platform`),
+  INDEX (`restaurant_branch`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+CREATE TABLE `comment` (
+  `id` INT AUTO_INCREMENT PRIMARY KEY,
+  `ticket_id` INT NOT NULL,
+  `comment` TEXT NOT NULL,
+  `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY (`ticket_id`) REFERENCES `ticket`(`id`) ON DELETE CASCADE,
+  INDEX (`ticket_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
